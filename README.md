@@ -1,4 +1,4 @@
-#Save to Frame
+#Save with Frame
 
 The plugin will take your selected artboards and output them to a location of your choosing wrapped in an iPhone 6 frame.  
 You can choose 4 different colors of the iPhone 6.
