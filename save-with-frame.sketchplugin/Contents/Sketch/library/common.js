@@ -14,6 +14,9 @@ com.redgell = {
 			'moto360/mens_gold.png',
 			'moto360/womens_silver.png',
 			'moto360/womens_gold.png'
+		],
+		'qfounder': [
+			'qfounder/gunmetal.png'
 		]
 	},
 	baseDir: '',

@@ -19,6 +19,11 @@
                 "name": "Export Moto 360 Assets",
                 "identifier": "moto-360",
                 "script": "Moto 360.sketchscript"
+            },
+            {
+                "name": "Export Q Founder Assets",
+                "identifier": "q-founder",
+                "script": "Q Founder.sketchscript"
             }
         ],
     "menu":
@@ -26,7 +31,8 @@
             "items":
             [
                 "iphone-6",
-                "moto-360"
+                "moto-360",
+                "q-founder"
             ]
         }
 }
