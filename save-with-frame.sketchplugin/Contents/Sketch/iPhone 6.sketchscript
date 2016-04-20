@@ -1,0 +1,12 @@
+@import 'library/common.js'
+
+var document;
+var onRun = function(context) {
+	var options = ['Gold', 'Rose Gold', 'Silver', 'Space Gray'],
+		selection = context.selection,
+		document = context.document
+		deviceStyle = createSelectDialog("Choose device type:", options)
+	;
+	com.redgell.context = context;
+	com.redgell.export('iPhone6', document, selection, deviceStyle[1])
+}

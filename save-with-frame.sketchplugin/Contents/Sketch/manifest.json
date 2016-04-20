@@ -1,0 +1,26 @@
+
+{
+    "name": "Save with Frame",
+    "description": "Plugin to export artboards with phone frame",
+    "author": "Rob Edgell",
+    "homepage": "https://github.com/redgell/Save-to-Frame",
+    "version": 1.0,
+    "identifier": "com.redgell.sketch.save-with-frame",
+    "compatibleVersion": 3,
+    "bundleVersion": 1,
+    "commands":
+        [
+            {
+                "name": "Export iPhone6 Assets",
+                "identifier": "iphone-6",
+                "script": "iPhone 6.sketchscript"
+            }
+        ],
+    "menu":
+        {
+            "items":
+            [
+                "iphone-6"
+            ]
+        }
+}
