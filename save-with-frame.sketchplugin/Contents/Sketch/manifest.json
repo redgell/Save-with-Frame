@@ -14,13 +14,19 @@
                 "name": "Export iPhone6 Assets",
                 "identifier": "iphone-6",
                 "script": "iPhone 6.sketchscript"
+            },
+            {
+                "name": "Export Moto 360 Assets",
+                "identifier": "moto-360",
+                "script": "Moto 360.sketchscript"
             }
         ],
     "menu":
         {
             "items":
             [
-                "iphone-6"
+                "iphone-6",
+                "moto-360"
             ]
         }
 }

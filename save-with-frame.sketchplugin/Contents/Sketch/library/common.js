@@ -8,11 +8,19 @@ com.redgell = {
 			'iPhone6/rose_gold.png',
 			'iPhone6/silver.png',
 			'iPhone6/space_gray.png'
+		],
+		'moto360': [
+			'moto360/mens_black.png',
+			'moto360/mens_gold.png',
+			'moto360/womens_silver.png',
+			'moto360/womens_gold.png'
 		]
 	},
 	baseDir: '',
 	width: '',
 	height: '',
+	offset_y: 0,
+	offset_x: 0,
 
 	export: function(deviceType, document, selection, deviceStyle) {
 		//log(this.pluginPath)
@@ -97,9 +105,9 @@ com.redgell = {
 		board.name = layer.name()+'_framed';
 		
 
-		var artboard = this.makeSliceAndResizeWithFactor(layer, 2.0)
+		var artboard = this.makeSliceAndResizeWithFactor(layer, this.scale)
 
-		board.addLayers([deviceShape, artboard]);
+		board.addLayers([artboard, deviceShape]);
 
 		board.setIsSelected(true)
 		this.document.documentData().currentPage().addLayers([board]);
@@ -117,7 +125,11 @@ com.redgell = {
 
         var image = [[NSImage alloc] initWithContentsOfFile:path];
 	    var rectShape = MSRectangleShape.alloc().init();
-	    rectShape.frame = MSRect.rectWithRect(NSMakeRect(120, 300, [image size].width, [image size].height));
+	    // 750, 990
+	    var y = ((this.height - [image size].height)/2) + this.offset_y;
+	    var x = ((this.width - [image size].width)/2) + this.offset_x;
+
+	    rectShape.frame = MSRect.rectWithRect(NSMakeRect(x, y, [image size].width, [image size].height));
 
 	    var artboardShape=MSShapeGroup.shapeWithPath(rectShape);
 	    var fill = artboardShape.style().fills().addNewStylePart();
