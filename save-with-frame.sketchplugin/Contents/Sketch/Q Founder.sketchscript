@@ -11,5 +11,5 @@ var onRun = function(context) {
 	com.redgell.offset_x = -8;
 	com.redgell.scale = 1.0;
 	com.redgell.context = context;
-	com.redgell.export('qfounder', document, selection, deviceStyle[1])
+	com.redgell.export('qfounder', context, deviceStyle[1])
 }

@@ -25,10 +25,11 @@ com.redgell = {
 	offset_y: 0,
 	offset_x: 0,
 
-	export: function(deviceType, document, selection, deviceStyle) {
+	export: function(deviceType, context, deviceStyle) {
 		//log(this.pluginPath)
-		this.document = document;
-        this.selection = selection;
+		this.context = context;
+		this.selection = context.selection;
+		this.document = context.document;
 		this.baseDir = this.getDirFromPrompt()
 		this.deviceType = deviceType;
 		this.deviceStyle = deviceStyle
@@ -39,25 +40,22 @@ com.redgell = {
         }
 
         // If nothing is selected tell the user so
-        if ([selection count] == 0) {
+        if (this.selection.count() == 0) {
             this.document.showMessage('Please select one or more layers to export.')
             return;
         }
 
         var device = this.loadDeviceFrame();
 
-        for (var i = 0; i < [selection count]; i++) {
-            var layer = selection[i];
+        for (var i = 0; i < this.selection.count(); i++) {
+            var layer = this.selection[i];
             var artboard = layer.parentArtboard() ? layer.parentArtboard() : this.document.currentPage();
 
-            artboard.deselectAllLayers();
-
-            this.processArtboard(device, layer);
-            this.saveFramedImages();
-            this.deleteFramedImages();
+            var board = this.processArtboard(device, layer);
+            this.saveFramedImages(board);
+            this.deleteFramedImages(board);
 
             //Restore selection
-            artboard.selectLayers(selection);
 
 
         }
@@ -100,62 +98,52 @@ com.redgell = {
 		rectShape.frame = MSRect.rectWithRect(NSMakeRect(0, 0, this.width, this.height));
 
 		var deviceShape=MSShapeGroup.shapeWithPath(rectShape);
-		var fill = deviceShape.style().fills().addNewStylePart();
+		//var fill = deviceShape.style().fills().addNewStylePart();
+		var fill = deviceShape.style().addStylePartOfType(0);
 		fill.setFillType(4);
 		fill.setPatternFillType(1);
 		fill.setPatternImage(device);
 
 		board.name = layer.name()+'_framed';
-		
 
 		var artboard = this.makeSliceAndResizeWithFactor(layer, this.scale)
 
 		board.addLayers([artboard, deviceShape]);
-
-		board.setIsSelected(true)
 		this.document.documentData().currentPage().addLayers([board]);
+		return board;
 
 	},
 	makeSliceAndResizeWithFactor: function(layer, scale) {
-        var rect = [MSSliceTrimming trimmedRectForSlice:layer],
-            slice
-        ;
+    var rect = [MSSliceTrimming trimmedRectForSlice:layer],
+        slice
+    ;
 
-        slice = [MSExportRequest requestWithRect:rect scale:scale];
+    slice = [MSExportRequest requestWithRect:rect scale:scale];
 
-        var path = NSTemporaryDirectory() + layer.name() + ".png";;
-        [(com.redgell.document) saveArtboardOrSlice: slice toFile: path];
+    var path = NSTemporaryDirectory() + layer.name() + ".png";;
+    [(com.redgell.document) saveArtboardOrSlice: slice toFile: path];
 
-        var image = [[NSImage alloc] initWithContentsOfFile:path];
-	    var rectShape = MSRectangleShape.alloc().init();
-	    // 750, 990
-	    var y = ((this.height - [image size].height)/2) + this.offset_y;
-	    var x = ((this.width - [image size].width)/2) + this.offset_x;
+    var image = [[NSImage alloc] initWithContentsOfFile:path];
+    var rectShape = MSRectangleShape.alloc().init();
+    // 750, 990
+    var y = ((this.height - [image size].height)/2) + this.offset_y;
+    var x = ((this.width - [image size].width)/2) + this.offset_x;
 
-	    rectShape.frame = MSRect.rectWithRect(NSMakeRect(x, y, [image size].width, [image size].height));
+    rectShape.frame = MSRect.rectWithRect(NSMakeRect(x, y, [image size].width, [image size].height));
 
-	    var artboardShape=MSShapeGroup.shapeWithPath(rectShape);
-	    var fill = artboardShape.style().fills().addNewStylePart();
-	    fill.setFillType(4);
-	    fill.setPatternFillType(1);
-	    fill.setPatternImage(image)
+    var artboardShape=MSShapeGroup.shapeWithPath(rectShape);
+    //var fill = artboardShape.style().fills().addNewStylePart();
+		var fill = artboardShape.style().addStylePartOfType(0);
+    fill.setFillType(4);
+    fill.setPatternFillType(1);
+    fill.setPatternImage(image)
 
-        return artboardShape;
-    },
-    saveFramedImages: function() {
-		var layers = this.document.currentPage().selectedLayers()
-		for (var i=0; i < layers.count(); i++){
-			[(com.redgell.document) saveArtboardOrSlice:layers[i] toFile: this.baseDir + '/' + layers[i].name() + '.png'];
-		}
-    },
-    deleteFramedImages: function() {
-		var layers = this.document.currentPage().selectedLayers()
-		for (var i=0; i < layers.count(); i++){
-			this.document.currentPage().removeLayer(layers[i]);
-		}
-    }
-
-
-
-
+    return artboardShape;
+	},
+	saveFramedImages: function(board) {
+		[(com.redgell.document) saveArtboardOrSlice:board toFile: this.baseDir + '/' + board.name() + '.png'];
+	},
+	deleteFramedImages: function(board) {
+		this.document.currentPage().removeLayer(board);
+	}
 }
