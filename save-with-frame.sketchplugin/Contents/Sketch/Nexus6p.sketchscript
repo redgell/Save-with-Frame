@@ -2,14 +2,14 @@
 
 var document;
 var onRun = function(context) {
-	var options = ['Gunmetal'],
-		selection = context.selection,
+	var options = ['Nexus 6P'],
+	selection = context.selection,
 		document = context.document
 		deviceStyle = createSelectDialog("Choose device type:", options)
 	;
-
-	com.redgell.offset_x = -8;
+    com.redgell.offset_y = 10;
+    com.redgell.offset_x = -4;
 	com.redgell.scale = 1.0;
 	com.redgell.context = context;
-	com.redgell.export('qfounder', context, deviceStyle[1])
+	com.redgell.export('nexus6p', context, deviceStyle[1])
 }

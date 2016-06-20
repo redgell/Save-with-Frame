@@ -17,6 +17,15 @@ com.redgell = {
 		],
 		'qfounder': [
 			'qfounder/gunmetal.png'
+		],
+		'nexus4': [
+			'nexus/Nexus4.png'
+		],
+		'nexus5x': [
+			'nexus/Nexus5x.png'
+		],
+		'nexus6p': [
+			'nexus/Nexus6p.png'
 		]
 	},
 	baseDir: '',

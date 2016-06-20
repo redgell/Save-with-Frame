@@ -24,6 +24,21 @@
                 "name": "Export Q Founder Assets",
                 "identifier": "q-founder",
                 "script": "Q Founder.sketchscript"
+            },
+            {
+                "name": "Export Nexus 4 Assets",
+                "identifier": "nexus4",
+                "script": "Nexus4.sketchscript"
+            },
+            {
+                "name": "Export Nexus 5X Assets",
+                "identifier": "nexus5x",
+                "script": "Nexus5x.sketchscript"
+            },
+            {
+                "name": "Export Nexus 6P Assets",
+                "identifier": "nexus6p",
+                "script": "Nexus6p.sketchscript"
             }
         ],
     "menu":
@@ -32,7 +47,10 @@
             [
                 "iphone-6",
                 "moto-360",
-                "q-founder"
+                "q-founder",
+                "nexus4",
+                "nexus5x",
+                "nexus6p"
             ]
         }
 }
