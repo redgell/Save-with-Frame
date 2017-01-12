@@ -3,7 +3,15 @@
 var com = {}
 com.redgell = {
 	devices: {
-		'iPhone6': [
+    'iPhone7': [
+      'iPhone7/jet_black.png',
+      'iPhone7/matte_black.png',
+      'iPhone7/gold.png',
+      'iPhone7/rose_gold.png',
+			'iPhone7/silver.png',
+			'iPhone7/space_gray.png'
+    ],
+    'iPhone6': [
 			'iPhone6/gold.png',
 			'iPhone6/rose_gold.png',
 			'iPhone6/silver.png',
@@ -102,8 +110,8 @@ com.redgell = {
 		var fill = deviceShape.style().addStylePartOfType(0);
 		fill.setFillType(4);
 		fill.setPatternFillType(1);
-		fill.setPatternImage(device);
-
+		//fill.setPatternImage(device);
+    fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(device, false));
 		board.name = layer.name()+'_framed';
 
 		var artboard = this.makeSliceAndResizeWithFactor(layer, this.scale)
@@ -114,14 +122,22 @@ com.redgell = {
 
 	},
 	makeSliceAndResizeWithFactor: function(layer, scale) {
-    var rect = [MSSliceTrimming trimmedRectForSlice:layer],
-        slice
-    ;
+/*    var rect = [MSSliceTrimming trimmedRectForSlice:layer],*/
+        //slice
+    //;
 
-    slice = [MSExportRequest requestWithRect:rect scale:scale];
+    //slice = [MSExportRequest requestWithRect:rect scale:scale];
+    var ancestry = MSImmutableLayerAncestry.ancestryWithMSLayer(layer);
+    var maybeRect = MSSliceTrimming.trimmedRectForLayerAncestry(ancestry);
 
+    var request = MSExportRequest.new();
+    request.rect = maybeRect;
+    request.scale = scale;
+    request.includeArtboardBackground = false;
+    request.configureForLayer(ancestry);
     var path = NSTemporaryDirectory() + layer.name() + ".png";;
-    [(com.redgell.document) saveArtboardOrSlice: slice toFile: path];
+    //[(com.redgell.document) saveArtboardOrSlice: slice toFile: path];
+    [(com.redgell.document) saveArtboardOrSlice:request toFile:path];
 
     var image = [[NSImage alloc] initWithContentsOfFile:path];
     var rectShape = MSRectangleShape.alloc().init();
@@ -136,7 +152,8 @@ com.redgell = {
 		var fill = artboardShape.style().addStylePartOfType(0);
     fill.setFillType(4);
     fill.setPatternFillType(1);
-    fill.setPatternImage(image)
+    //fill.setPatternImage(image)
+    fill.setImage(MSImageData.alloc().initWithImage_convertColorSpace(image, false));
 
     return artboardShape;
 	},
