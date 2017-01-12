@@ -1,7 +1,15 @@
 #Save with Frame
 
 The plugin will take your selected artboards and output them to a location of your choosing wrapped in an iPhone 6 frame.  
-You can choose 4 different colors of the iPhone 6.
+You can choose 4 different colors of the iPhone 7 and iPhone 6.
+
+###iPhone 7
+1. Create & Save / Open a Saved Sketch file
+2. Create a new artboard sized for iPhone 7 @1x
+3. Or, select artboards you want to export that are already at that size
+4. Click Plugins > Save with Frame > Export iPhone 7 Assets
+5. Select the color iPhone you want to frame your artboard
+6. Select where you want to save these images
 
 ###iPhone 6
 1. Create & Save / Open a Saved Sketch file
