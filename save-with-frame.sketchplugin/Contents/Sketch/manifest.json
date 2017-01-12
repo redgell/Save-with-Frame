@@ -2,16 +2,21 @@
 {
     "name": "Save with Frame",
     "description": "Plugin to export artboards with phone frame",
-    "author": "Rob Edgell",
+    "author": "Rob Edgell forked by Alejandro Camara",
     "homepage": "https://github.com/redgell/Save-with-Frame",
-    "version": 1.0,
+    "version": 1.1,
     "identifier": "com.redgell.sketch.save-with-frame",
-    "compatibleVersion": 3,
+    "compatibleVersion": 4,
     "bundleVersion": 1,
     "commands":
         [
             {
-                "name": "Export iPhone6 Assets",
+                "name": "Export iPhone 7 Assets",
+                "identifier": "iphone-7",
+                "script": "iPhone 7.sketchscript"
+            },
+            {
+                "name": "Export iPhone 6 Assets",
                 "identifier": "iphone-6",
                 "script": "iPhone 6.sketchscript"
             },
@@ -30,6 +35,7 @@
         {
             "items":
             [
+                "iphone-7",
                 "iphone-6",
                 "moto-360",
                 "q-founder"
