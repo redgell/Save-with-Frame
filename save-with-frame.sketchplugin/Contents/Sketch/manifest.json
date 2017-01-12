@@ -2,7 +2,7 @@
 {
     "name": "Save with Frame",
     "description": "Plugin to export artboards with phone frame",
-    "author": "Rob Edgell forked by Alejandro Camara",
+    "author": "Rob Edgell",
     "homepage": "https://github.com/redgell/Save-with-Frame",
     "version": 1.1,
     "identifier": "com.redgell.sketch.save-with-frame",

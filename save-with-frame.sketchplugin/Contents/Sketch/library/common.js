@@ -3,14 +3,14 @@
 var com = {}
 com.redgell = {
 	devices: {
-    'iPhone7': {
+    'iPhone7': [
       'iPhone7/jet_black.png',
       'iPhone7/matte_black.png',
       'iPhone7/gold.png',
-      'iPhone6/rose_gold.png',
-			'iPhone6/silver.png',
-			'iPhone6/space_gray.png'
-    }
+      'iPhone7/rose_gold.png',
+			'iPhone7/silver.png',
+			'iPhone7/space_gray.png'
+    ],
     'iPhone6': [
 			'iPhone6/gold.png',
 			'iPhone6/rose_gold.png',
