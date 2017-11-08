@@ -1,0 +1,13 @@
+@import 'library/common.js'
+
+var document;
+var onRun = function(context) {
+	var options = ['Gold', 'Silver', 'Space Gray'],
+		deviceStyle = createSelectDialog("Choose device type:", options)
+	;
+
+
+	com.redgell.scale = 2.0;
+	com.redgell.context = context;
+	com.redgell.export('iPhone8', context, deviceStyle[1])
+}

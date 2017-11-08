@@ -4,14 +4,24 @@
     "description": "Plugin to export artboards with phone frame",
     "author": "Rob Edgell",
     "homepage": "https://github.com/redgell/Save-with-Frame",
-    "version": 1.0,
+    "version": 1.2,
     "identifier": "com.redgell.sketch.save-with-frame",
-    "compatibleVersion": 3,
+    "compatibleVersion": 4,
     "bundleVersion": 1,
     "commands":
         [
             {
-                "name": "Export iPhone6 Assets",
+                "name": "Export iPhone 8 Assets",
+                "identifier": "iphone-8",
+                "script": "iPhone 8.sketchscript"
+            },
+            {
+                "name": "Export iPhone 7 Assets",
+                "identifier": "iphone-7",
+                "script": "iPhone 7.sketchscript"
+            },
+            {
+                "name": "Export iPhone 6 Assets",
                 "identifier": "iphone-6",
                 "script": "iPhone 6.sketchscript"
             },
@@ -24,33 +34,17 @@
                 "name": "Export Q Founder Assets",
                 "identifier": "q-founder",
                 "script": "Q Founder.sketchscript"
-            },
-            {
-                "name": "Export Nexus 4 Assets",
-                "identifier": "nexus4",
-                "script": "Nexus4.sketchscript"
-            },
-            {
-                "name": "Export Nexus 5X Assets",
-                "identifier": "nexus5x",
-                "script": "Nexus5x.sketchscript"
-            },
-            {
-                "name": "Export Nexus 6P Assets",
-                "identifier": "nexus6p",
-                "script": "Nexus6p.sketchscript"
             }
         ],
     "menu":
         {
             "items":
             [
+                "iphone-8",
+                "iphone-7",
                 "iphone-6",
                 "moto-360",
-                "q-founder",
-                "nexus4",
-                "nexus5x",
-                "nexus6p"
+                "q-founder"
             ]
         }
 }

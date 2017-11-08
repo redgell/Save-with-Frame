@@ -3,29 +3,33 @@
 var com = {}
 com.redgell = {
 	devices: {
-		'iPhone6': [
-			'iPhone6/gold.png',
-			'iPhone6/rose_gold.png',
-			'iPhone6/silver.png',
-			'iPhone6/space_gray.png'
+    'iPhone8': [
+      'iPhone8/gold.png',
+      'iPhone8/silver.png',
+      'iPhone8/space_gray.png'
+    ],
+    'iPhone7': [
+      'iPhone7/jet_black.png',
+      'iPhone7/matte_black.png',
+      'iPhone7/gold.png',
+      'iPhone7/rose_gold.png',
+      'iPhone7/silver.png',
+      'iPhone7/space_gray.png'
+    ],
+    'iPhone6': [
+        'iPhone6/gold.png',
+        'iPhone6/rose_gold.png',
+        'iPhone6/silver.png',
+        'iPhone6/space_gray.png'
 		],
-		'moto360': [
+    'moto360': [
 			'moto360/mens_black.png',
 			'moto360/mens_gold.png',
 			'moto360/womens_silver.png',
 			'moto360/womens_gold.png'
 		],
-		'qfounder': [
+    'qfounder': [
 			'qfounder/gunmetal.png'
-		],
-		'nexus4': [
-			'nexus/Nexus4.png'
-		],
-		'nexus5x': [
-			'nexus/Nexus5x.png'
-		],
-		'nexus6p': [
-			'nexus/Nexus6p.png'
 		]
 	},
 	baseDir: '',
@@ -111,8 +115,8 @@ com.redgell = {
 		var fill = deviceShape.style().addStylePartOfType(0);
 		fill.setFillType(4);
 		fill.setPatternFillType(1);
-		fill.setPatternImage(device);
-
+		//fill.setPatternImage(device);
+    fill.setImage(MSImageData.alloc().initWithImage(device));
 		board.name = layer.name()+'_framed';
 
 		var artboard = this.makeSliceAndResizeWithFactor(layer, this.scale)
@@ -123,14 +127,22 @@ com.redgell = {
 
 	},
 	makeSliceAndResizeWithFactor: function(layer, scale) {
-    var rect = [MSSliceTrimming trimmedRectForSlice:layer],
-        slice
-    ;
+/*    var rect = [MSSliceTrimming trimmedRectForSlice:layer],*/
+        //slice
+    //;
 
-    slice = [MSExportRequest requestWithRect:rect scale:scale];
+    //slice = [MSExportRequest requestWithRect:rect scale:scale];
+    var ancestry = MSImmutableLayerAncestry.ancestryWithMSLayer(layer);
+    var maybeRect = MSSliceTrimming.trimmedRectForLayerAncestry(ancestry);
 
+    var request = MSExportRequest.new();
+    request.rect = maybeRect;
+    request.scale = scale;
+    request.includeArtboardBackground = false;
+    request.configureForLayer(ancestry);
     var path = NSTemporaryDirectory() + layer.name() + ".png";;
-    [(com.redgell.document) saveArtboardOrSlice: slice toFile: path];
+    //[(com.redgell.document) saveArtboardOrSlice: slice toFile: path];
+    [(com.redgell.document) saveArtboardOrSlice:request toFile:path];
 
     var image = [[NSImage alloc] initWithContentsOfFile:path];
     var rectShape = MSRectangleShape.alloc().init();
@@ -145,7 +157,8 @@ com.redgell = {
 		var fill = artboardShape.style().addStylePartOfType(0);
     fill.setFillType(4);
     fill.setPatternFillType(1);
-    fill.setPatternImage(image)
+    //fill.setPatternImage(image)
+    fill.setImage(MSImageData.alloc().initWithImage(image));
 
     return artboardShape;
 	},

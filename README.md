@@ -4,19 +4,11 @@ The plugin will take your selected artboards and output them to a location of yo
 You can choose 4 different colors of the iPhone 6.
 
 ##New
-###Nexus 4, Nexus 5X, and Nexus 6P
+###iPhone 6–8 Support
 1. Create & Save / Open a Saved Sketch file
-2. Create a new artboard sized at 768x1280 (Nexus 4), 1080x1920 (Nexus 5X), or 1440x2560 (Nexus 6P)
+2. Create a new artboard sized for iPhone 6, 7, or 8 @1x
 3. Or, select artboards you want to export that are already at that size
-4. Click Plugins > Save with Frame > Export Nexus [x]
-5. Select the Nexus you want to frame your artboard
-6. Select where you want to save these images
-
-###iPhone 6
-1. Create & Save / Open a Saved Sketch file
-2. Create a new artboard sized for iPhone 6 @1x
-3. Or, select artboards you want to export that are already at that size
-4. Click Plugins > Save with Frame > Export iPhone 6 Assets
+4. Click Plugins > Save with Frame > Export iPhone 6, 7, or 8 Assets
 5. Select the color iPhone you want to frame your artboard
 6. Select where you want to save these images
 

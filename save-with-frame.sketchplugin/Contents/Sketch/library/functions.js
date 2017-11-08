@@ -19,6 +19,7 @@ var createSelectDialog = function(msg, items) {
 
 var readPluginPath = function() {
     var sketchPluginsPath = com.redgell.context.scriptPath.replace(/Sketch([\w \/ -])*.sketchscript$/, "");
+    
     return {
         sketchPluginsPath: sketchPluginsPath,
         pluginFolder: 'Resources'
